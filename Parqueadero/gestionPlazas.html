@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Gestión de Plazas</title>
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css">
+    <script type="text/javascript" src="Librerias/angular.min.js"></script>
+    <script type="text/javascript" src="gestionPlazas.js"></script>
+</head>
+<body style="background:gray">
+    <div ng-app="AppPlaza" class="container-fluid">
+        <div ng-controller="ControlAppPlazas" class="form-group">
+        
+            <form ng-show="formVisible" ng-submit="agregar()">
+                <h2 align="center" style="color:cyan"> Ingrese nuevos datos de la Plaza</h2>
+                <table align="center">
+                    <tr>
+                        <td><b>Id</b></td>
+                        <td><input type="text" name="" ng-model="id" placeholder="Ingrese la Id" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Nombre</b></td>
+                        <td><input type="text" name="" ng-model="nombre" placeholder="Ingrese Nombre del Parqueadero" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Dirección</b></td>
+                        <td><input type="text" name="" ng-model="direccion" placeholder="Ingrese la Dirección" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Número de Plazas</b></td>
+                        <td><input type="text" name="" ng-model="nPlazas" placeholder="Ingrese el número de plazas" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Precio</b></td>
+                        <td><input type="text" name="" ng-model="precio" placeholder="Ingrese el precio por hora" class="form-control"></td>
+                    </tr>
+                </table>
+                <br><center><input type="submit" name="" value="Agregar" class="btn btn-primary">
+                <input type="button" name="" value="Guardar Cambios" class="btn btn-success" ng-click="editar()"></center>
+            </form>            
+            <h2 style="color:blue" align="center"><marquee bgcolor="gray" width="100%" scrolldelay="100" scrollamount="9" direction="LEFT" loop="infinite">TODOS LOS PARQUEADEROS</marquee></h2>
+            
+            <table border="1" align="center" class="table table-circle">
+                <tr>
+                    <td colspan="2" align="center"><h4><b>Buscar:</b></h4></td>
+                    <td colspan="4"><input type="text" placeholder="Ingrese una palabra o letra para la búsqueda" ng-model="buscar" class="form-control"></td>
+                </tr>
+                <tr style="background:green">
+                    <th>Id</th>
+                    <th><a href="" ng-click="ordenar('nombre')">Nombre</a></th>
+                    <th><a href="" ng-click="ordenar('direccion')">Nombre</a></th>
+                    <th><a href="" ng-click="ordenar('nPlazas')">Numero de Plazas</a></th>
+                    <th><a href="" ng-click="ordenar('precio')">Precio</a></th>
+                    <th>Opciones</th>
+                </tr>
+                <tr class="success" ng-repeat="n in plazas | orderBy:ordenado | filter:buscar">
+                    <td>{{n.id}}</td>
+                    <td>{{n.nombre}}</td>
+                    <td>{{n.direccion}}</td>
+                    <td>{{n.nPlazas}}</td>
+                    <td>{{n.precio}}</td>
+                    <td>
+                    <a href="#" ng-click="">Seleccionar</a>
+                    </td>
+                </tr>
+            </table>
+            <center><button ng-click="ShowForm()" ng-hide="formVisible" class="btn btn-succes">Agregar Parqueadero</button></center>
+        </div>
+    </div>
+</body>
+</html>
