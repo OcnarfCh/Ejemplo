@@ -52,6 +52,12 @@ function ControladorPlazas($scope){
         
     }
     
+    function calcularPrecio(id){
+        var idPlaza = getSelectedIndex(id);
+        var prec = $scope.plazas[idPlaza].precio;
+        return prec;
+    }
+    
     $scope.formVisible=false;
     
     $scope.ShowForm=function(){

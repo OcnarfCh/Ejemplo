@@ -3,9 +3,15 @@
 <head>
     <meta charset="utf-8">
     <title>Gestión de Plazas</title>
-    <link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css">
+       
+    <script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/bootstrap.js"></script>
     <script type="text/javascript" src="Librerias/angular.min.js"></script>
     <script type="text/javascript" src="gestionPlazas.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.min.css">
+    <link href="Css/bootstrap.css" rel="stylesheet" type="text/css">
+    
 </head>
 <body style="background:gray">
     <div ng-app="AppPlaza" class="container-fluid">
@@ -60,12 +66,52 @@
                     <td>{{n.nPlazas}}</td>
                     <td>{{n.precio}}</td>
                     <td>
-                    <a href="#" ng-click="">Seleccionar</a>
+                    <a href="#mostrarmodal" data-toggle="modal" class="btn-primary btn btn-info">Seleccionar</a>
                     </td>
                 </tr>
             </table>
             <center><button ng-click="ShowForm()" ng-hide="formVisible" class="btn btn-succes">Agregar Parqueadero</button></center>
         </div>
+        
+        <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+          <center>
+           <div class="modal-dialog">
+              <div class="modal-content">
+                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3>Seleccione la hora de entrada y salida</h3>
+                 </div>
+                 <div class="modal-body">
+                    <h4>Hora de entrada</h4>
+                    <select size="1" ng-model="horaEntrada" style="width:225px">
+                        <option value="6">06:00</option>
+                        <option value="7">07:00</option>
+                        <option value="8">08:00</option>
+                        <option value="9">09:00</option>
+                        <option value="10">10:00</option>
+                        <option value="11">11:00</option>
+                    </select>
+                    <h4>Hora de Salida</h4>
+                    <select size="1" ng-model="horaSalida" style="width:225px">
+                        <option value="6">06:00</option>
+                        <option value="7">07:00</option>
+                        <option value="8">08:00</option>
+                        <option value="9">09:00</option>
+                        <option value="10">10:00</option>
+                        <option value="11">11:00</option>
+                    </select>    
+                </div>
+                <div class="modal-footer">
+                   <a href="#" data-dismiss="modal" class="btn btn-danger">Cerrar</a>
+                   <input type="button" ng-click="" class="btn btn-success" value="Reservar" data-dismiss="modal">
+                </div>
+              </div>
+           </div>
+           </center>
+        </div> 
+        <h1> Hora entrada = {{horaEntrada}}</h1>
+        <h1> Hora entrada = {{horaSalida}}</h1>
+        <h1> Precio = {{(horaSalida-horaEntrada)}}*{{plazas.precio}}</h1>
     </div>
 </body>
 </html>
